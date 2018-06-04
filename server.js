@@ -4,6 +4,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const myLogger = require('winston');
 const errorHander = require('errorhandler');
+const routes = require('routes');
 
 const portNumber = 3000;
 
