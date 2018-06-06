@@ -22,13 +22,18 @@ store.posts = [];
 
 app.get('/posts', (req, res) => {
     posts.getPosts(req, res, store);
-    });
+});
+
 app.post('/posts', (req, res) => {
     posts.addPost(req, res, store);
-    });
+});
 
 app.put('/posts/:id', (req, res) => {
     posts.updatePost(req, res, store);
+});
+
+app.delete('/posts/:id', (req, res) => {
+    posts.removePost(req, res, store);
 });
 
 app.listen(portNumber);
