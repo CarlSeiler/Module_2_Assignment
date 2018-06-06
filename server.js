@@ -20,6 +20,7 @@ app.use(errorHander());
 let store = {};
 store.posts = [];
 
+// Posts
 app.get('/posts', (req, res) => {
     posts.getPosts(req, res, store);
 });
@@ -35,6 +36,13 @@ app.put('/posts/:id', (req, res) => {
 app.delete('/posts/:id', (req, res) => {
     posts.removePost(req, res, store);
 });
+
+// Comments
+app.get ('/posts/:id/comments', (req, res) => {
+    comments.getComments (req, res, store);
+});
+
+
 
 app.listen(portNumber);
 myLogger.info(`Started listening on port ${portNumber}`);

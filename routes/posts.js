@@ -7,6 +7,7 @@ module.exports = {
     getPosts(req, res, postStore) {
         myLogger.info('Posts retrieved.');
         myLogger.info(JSON.stringify(postStore));
+        // Returns entire post store object, not just post array
         res.status(200).send(postStore);
     },
     addPost(req, res, postStore) {
