@@ -21,14 +21,21 @@ let store = {};
 store.posts = [];
 // TODO: Not sure about this:
 store.posts.comments = [];
-let newPost = { "name": "Top 10 ES6 Features Every Web Developer Must Know",
-	"url": "https://www.example.com/es6",
-	"text": "This essay blah blah blah",
-	"comments": [] };
-let newComment = { "text": "This is the comment" };
+let newPost = { name: "Top 10 ES6 Features Every Web Developer Must Know",
+	url: "https://www.example.com/es6",
+	text: "This essay blah blah blah",
+	comments: [] };
+let newComment = { text: "This is the comment" };
 
+// Push a new post object on the array of post objects
 store.posts.push(newPost);
-store.posts.comments[(store.posts.length - 1)] = 
+// Push a new comment string on array of post comments
+store.posts[(store.posts.length - 1)].comments.push(newComment);
+
+let secondComment = { text: "This is the second comment"};
+store.posts[(store.posts.length - 1)].comments.push(secondComment);
+
+myLogger.info (JSON.stringify(store));
 
 app.get('/posts', (req, res) => {
 	posts.getPosts(req, res); 
