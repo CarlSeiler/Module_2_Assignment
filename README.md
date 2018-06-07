@@ -47,7 +47,7 @@ This establishes the express instance for later starting via app.listen. I
 had a little trouble telling where things were coming from, so I named the
 exported module functions in the index.js file with a trailing underscore.  This
 allowed me to better picture this in my mind. I could see that the
-const posts referred to the routs.posts_ exported by the index.js file in ./routes.
+const posts referred to the routes.posts_ exported by the index.js file in ./routes.
 This just helped me picture it better.
 
 ```javascript
@@ -80,6 +80,9 @@ return the items in JSON via the API.  So, I modified the comments structure to
 be an array of objects, trusting this comment from the instructor:
 
 * Use an in-memory store with the structure _similar_ to this:
+
+I took the keyword here to be "similar" and my structure is
+similar.
 
 Here are the 8 endpoints:
 
@@ -119,9 +122,9 @@ app.delete ('/posts/:postID/comments/:commentID', (req,res) => {
 ```
 
 They all simply call the methods imported from ./routes/index.js.  Note
-that I modified the methods found there to include the store in their call.
-I was unable to find a way to otherwise modify the store.  The store objects
-is passed to each of the eight routing methods.  
+that I modified the methods found there to include the __store__ in their call.
+I was unable to find a way to otherwise modify the __store__.  The __store__
+object is passed to each of the eight routing methods.  
 
 ### Additional problems encountered, challenges and testing
 
@@ -136,9 +139,9 @@ let store = {
     url: 'https://webapplog.com/es6',
     text: 'This essay will give you a quick introduction to ES6. If you don’t know what is ES6, it’s a new JavaScript implementation.',
     comments: [
-      { text: 'Cruel…..var { house, mouse} = No type optimization at all'},
-      { text: 'I think you’re undervaluing the benefit of ‘let’ and ‘const’.'},
-      { text: '(p1,p2)=>{ … } ,i understand this ,thank you !'}      
+      { text: "Cruel…..var { house, mouse} = No type optimization at all"},
+      { text: "I think you’re undervaluing the benefit of ‘let’ and ‘const’."},
+      { text: "(p1,p2)=>{ … } ,i understand this ,thank you !"}      
     ]
     }
   ]
@@ -169,7 +172,7 @@ of this file, the user can test using:
 bash test.sh
 ```
 
-GET, PUT, and DELETE return 200 if successful.  POST returns 201. When
+GET, PUT, and DELETE return *200* if successful.  POST returns *201*. When
 POSTing, the response is:
 
 ```
@@ -191,7 +194,7 @@ GET for /posts/:postId/comments returns:
 ```
 
 If a comment or post does not exist, GET, PUT, and DELETE will
-return 404 and a response in the form:
+return *404* and a response in the form:
 
 ```
 { "error": errmsg}
