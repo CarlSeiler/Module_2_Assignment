@@ -1,12 +1,12 @@
 // posts.js
 // 2018-06-06
-// Description:
+// CRUD functions for posts
 const myLogger = require('winston');
 
 module.exports = {
     getPosts(req, res, postStore) {
-        myLogger.info('Posts retrieved.');
-        myLogger.info(JSON.stringify(postStore));
+        myLogger.info('Posts retrieved. Dumping all to console:');
+        myLogger.info(JSON.stringify(postStore) + '\n');
         // Returns entire post store JSON object, not just post array
         res.status(200).send(postStore);
     },

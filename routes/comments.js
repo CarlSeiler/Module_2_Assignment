@@ -1,6 +1,6 @@
 // comments.js
 // 2018-06-07
-// Description:
+// CRUD functions for comments
 const myLogger = require('winston');
 
 module.exports = {
@@ -86,9 +86,35 @@ module.exports = {
           });
         }
       postStore.posts[postId].comments[commentId]= req.body;
-      res.status(201).send ({ id: parseInt(commentId)});
+      res.status(200).send ({ id: parseInt(commentId)});
     },
     removeComment(req, res) {
-
+      let postId = req.params.postID;
+      let commentId = req.params.commentID;
+      try {
+          if (postId > (postStore.posts.length - 1) || postId < 0) {
+              throw "Id is out of range.";
+          }
+      } catch (err) {
+          myLogger.warn('404: Comment not deleted. Post Id is out of range. Post does not exist.');
+          return res.status(404).send({
+              error: err
+          });
+      }
+      try {
+          if ( !('comments' in postStore.posts[postId]) || (commentId >  postStore.posts[postId].comments.length - 1) || commentId < 0) {
+              throw "Comment id is out of range";
+          }
+      } catch (err) {
+          myLogger.warn('404: Comment not updated. Comment Id is out of range. Comment does not exist.');
+          return res.status(404).send({
+              error: err
+          });
+        }
+        postStore.posts[postId].splice(commentId, 1);
+        myLogger.info('Comment deleted.');
+        res.status(200).send({
+            id: commentId
+        });
     }
 };

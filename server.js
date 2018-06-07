@@ -1,4 +1,3 @@
-const fs = require('fs');
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
@@ -47,6 +46,10 @@ app.post('/posts/:id/comments', (req, res) => {
 });
 
 app.put ('/posts/:postID/comments/:commentID', (req,res) => {
+    comments.updateComment(req, res, store);
+});
+
+app.delete ('/posts/:postID/comments/:commentID', (req,res) => {
     comments.updateComment(req, res, store);
 });
 
