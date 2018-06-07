@@ -2,7 +2,7 @@ const fs = require('fs');
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-const myLogger = require('winston');
+const myLogger = require('winston'); // An extra logger
 const errorHander = require('errorhandler');
 const routes = require('./routes');
 
@@ -38,11 +38,13 @@ app.delete('/posts/:id', (req, res) => {
 });
 
 // Comments
-app.get ('/posts/:id/comments', (req, res) => {
-    comments.getComments (req, res, store);
+app.get('/posts/:id/comments', (req, res) => {
+    comments.getComments(req, res, store);
 });
 
-
+app.post('/posts/:id/comments', (req, res) => {
+    comments.addComment(req, res, store);
+});
 
 app.listen(portNumber);
 myLogger.info(`Started listening on port ${portNumber}`);
