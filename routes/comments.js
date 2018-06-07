@@ -1,5 +1,5 @@
 // comments.js
-// 2018-06-0
+// 2018-06-07
 // Description:
 const myLogger = require('winston');
 
@@ -9,10 +9,10 @@ module.exports = {
         let postId = req.params.id;
         try {
             if (postId > (postStore.posts.length - 1) || postId < 0) {
-                throw "Id is out of range";
+                throw "Id is out of range.";
             }
         } catch (err) {
-            myLogger.warn('404: Comments not retrieved. Id is out of range');
+            myLogger.warn('404: Comments not retrieved. Id is out of range.');
             return res.status(404).send({
                 error: err
             });
@@ -26,9 +26,9 @@ module.exports = {
             res.status(200).send(JSON.parse('{ "comments":' + JSON.stringify(postStore.posts[postId].comments) + "}"));
         } else {
             res.status(404).send({
-                error: `No comments exist for id ${postId}`
+                error: `No comments exist for id ${postId}.`
             });
-            myLogger.warn(`404: Comments not retrieved. No comments exist for id ${postId}`);
+            myLogger.warn(`404: Comments not retrieved. No comments exist for id ${postId}.`);
         }
     },
     addComment(req, res, postStore) {
@@ -36,15 +36,14 @@ module.exports = {
         let postId = req.params.id;
         try {
             if (postId > (postStore.posts.length - 1) || postId < 0) {
-                throw "Id is out of range";
+                throw "Id is out of range.";
             }
         } catch (err) {
-            myLogger.warn('404: Comment not added. Id is out of range');
+            myLogger.warn('404: Comment not added. Id is out of range. Post does not exist.');
             return res.status(404).send({
                 error: err
             });
             // this should end it
-
         }
         // If post id exists, and comments exist then
         // add the comment which came in the body by pushing it on the
@@ -63,8 +62,31 @@ module.exports = {
             id: commentId
         });
     },
-    updateComment(req, res) {
-
+    updateComment(req, res, postStore) {
+      let postId = req.params.postID;
+      let commentId = req.params.commentID;
+      try {
+          if (postId > (postStore.posts.length - 1) || postId < 0) {
+              throw "Id is out of range.";
+          }
+      } catch (err) {
+          myLogger.warn('404: Comment not updated. Post Id is out of range. Post does not exist.');
+          return res.status(404).send({
+              error: err
+          });
+      }
+      try {
+          if ( !('comments' in postStore.posts[postId]) || (commentId >  postStore.posts[postId].comments.length - 1) || commentId < 0) {
+              throw "Comment id is out of range";
+          }
+      } catch (err) {
+          myLogger.warn('404: Comment not updated. Comment Id is out of range. Comment does not exist.');
+          return res.status(404).send({
+              error: err
+          });
+        }
+      postStore.posts[postId].comments[commentId]= req.body;
+      res.status(201).send ({ id: parseInt(commentId)});
     },
     removeComment(req, res) {
 

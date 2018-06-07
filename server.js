@@ -46,5 +46,9 @@ app.post('/posts/:id/comments', (req, res) => {
     comments.addComment(req, res, store);
 });
 
+app.put ('/posts/:postID/comments/:commentID', (req,res) => {
+    comments.updateComment(req, res, store);
+});
+
 app.listen(portNumber);
 myLogger.info(`Started listening on port ${portNumber}`);
