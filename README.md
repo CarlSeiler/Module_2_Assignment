@@ -81,7 +81,7 @@ be an array of objects, trusting this comment from the instructor:
 
 * Use an in-memory store with the structure _similar_ to this:
 
-I took the keyword here to be "similar" and my structure is
+I took the keyword here to be "similar," and my structure is
 similar.
 
 Here are the 8 endpoints:
