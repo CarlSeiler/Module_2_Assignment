@@ -3,6 +3,12 @@
 
 ### Module 2, Assignment Lab
 
+Additional requirements:
+
+1. nodeJS
+2. npm
+3. package [_node-dev_](https://www.npmjs.com/package/node-dev "node-dev") (usually installed globally)
+
 How to install:
 
 1. clone package
@@ -23,8 +29,9 @@ _morgan_ and _errorhandler_ as previously described in the Module 2 lab. The onl
 node package not previously seen is the [_winston_](https://www.npmjs.com/package/winston)
  package which is a different,
 general logger, which is primarily used for console logging in this case.
-I can also be used to record activity to files based on a particular errorlevel,
-but it is not used here.
+_Winston_ can also be used to record activity to files based on a particular
+[logging levels](https://www.npmjs.com/package/winston#using-logging-levels "Winston logging levels"),
+but that feature is not used here.
 
 2. The goal was to put all of the primary CRUD functions of the program
 into the directory ./routes, and have the _server.js_ call the functions
