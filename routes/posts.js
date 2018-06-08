@@ -5,8 +5,8 @@ const myLogger = require('winston');
 
 module.exports = {
     getPosts(req, res, postStore) {
-        myLogger.info('Posts retrieved. Dumping all to console:');
-        myLogger.info(JSON.stringify(postStore) + '\n');
+        myLogger.info('Posts retrieved.');
+        // myLogger.info(JSON.stringify(postStore) + '\n');
         // Returns entire post store JSON object, not just post array
         res.status(200).send(postStore);
     },
