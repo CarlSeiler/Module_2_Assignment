@@ -12,45 +12,49 @@ const posts = routes.posts_;
 const comments = routes.comments_;
 
 //Middleware
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(errorHander());
-
 let store = {};
 store.posts = [];
 
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(errorHander());
+app.use((req, res, next) => {
+    req.store = store;
+    next();
+});
+
 // Posts
 app.get('/posts', (req, res) => {
-    posts.getPosts(req, res, store);
+    posts.getPosts(req, res);
 });
 
 app.post('/posts', (req, res) => {
-    posts.addPost(req, res, store);
+    posts.addPost(req, res);
 });
 
 app.put('/posts/:id', (req, res) => {
-    posts.updatePost(req, res, store);
+    posts.updatePost(req, res);
 });
 
 app.delete('/posts/:id', (req, res) => {
-    posts.removePost(req, res, store);
+    posts.removePost(req, res);
 });
 
 // Comments
 app.get('/posts/:id/comments', (req, res) => {
-    comments.getComments(req, res, store);
+    comments.getComments(req, res);
 });
 
 app.post('/posts/:id/comments', (req, res) => {
-    comments.addComment(req, res, store);
+    comments.addComment(req, res);
 });
 
 app.put ('/posts/:postID/comments/:commentID', (req,res) => {
-    comments.updateComment(req, res, store);
+    comments.updateComment(req, res);
 });
 
 app.delete ('/posts/:postID/comments/:commentID', (req,res) => {
-    comments.updateComment(req, res, store);
+    comments.updateComment(req, res);
 });
 
 app.listen(portNumber);
