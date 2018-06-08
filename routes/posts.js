@@ -1,5 +1,5 @@
 // posts.js
-// 2018-06-06
+// 2018-06-08
 // CRUD functions for posts
 const myLogger = require('winston');
 

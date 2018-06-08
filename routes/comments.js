@@ -1,5 +1,5 @@
 // comments.js
-// 2018-06-07
+// 2018-06-08
 // CRUD functions for comments
 const myLogger = require('winston');
 
