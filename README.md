@@ -94,44 +94,24 @@ similar.
 Here are the 8 endpoints:
 
 ```javascript
-app.get('/posts', (req, res) => {
-    posts.getPosts(req, res, store);
-});
-
-app.post('/posts', (req, res) => {
-    posts.addPost(req, res, store);
-});
-
-app.put('/posts/:id', (req, res) => {
-    posts.updatePost(req, res, store);
-});
-
-app.delete('/posts/:id', (req, res) => {
-    posts.removePost(req, res, store);
-});
+// Posts
+app.get('/posts', routes.posts_.getPosts);
+app.post('/posts', routes.posts_.addPost);
+app.put('/posts/:id', routes.posts_.updatePost);
+app.delete('/posts/:id', routes.posts_.removePost);
 
 // Comments
-app.get('/posts/:id/comments', (req, res) => {
-    comments.getComments(req, res, store);
-});
+app.get('/posts/:id/comments', routes.comments_.getComments);
+app.post('/posts/:id/comments', routes.comments_.addComment);
+app.put ('/posts/:postID/comments/:commentID', routes.comments_.updateComment);
+app.delete ('/posts/:postID/comments/:commentID', routes.comments_.removeComment);
 
-app.post('/posts/:id/comments', (req, res) => {
-    comments.addComment(req, res, store);
-});
-
-app.put ('/posts/:postID/comments/:commentID', (req,res) => {
-    comments.updateComment(req, res, store);
-});
-
-app.delete ('/posts/:postID/comments/:commentID', (req,res) => {
-    comments.updateComment(req, res, store);
-});
 ```
 
-They all simply call the methods imported from ./routes/index.js.  Note
-that I modified the methods found there to include the __store__ in their call.
-I was unable to find a way to otherwise modify the __store__.  The __store__
-object is passed to each of the eight routing methods.  
+They all simply call the methods imported from ./routes/index.js.  Originally,
+I modified the methods found there to include the __store__ in their call.
+After watching the video and what others had done, I was able to modify this
+to keep from having to do this by adding properties to the req object.
 
 ### Additional problems encountered, challenges and testing
 
